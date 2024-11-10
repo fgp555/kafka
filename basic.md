@@ -19,14 +19,19 @@ kafka-topics --bootstrap-server localhost:9092 --describe --topic test-topic
 
 
 
-# ========== ejecutar un consumer y un producer ==========
+# ========== ejecutar un producer ==========
 kafka-console-producer --bootstrap-server localhost:9092 --topic test-topic
+kafka-console-producer --bootstrap-server localhost:9092 --topic my-topic
+
+
+# ========== ejecutar un consumer ==========
 kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic --from-beginning
-
-kafka-console-consumer --bootstrap-server localhost:9092 --topic notificaciones --from-beginning
-
+kafka-console-consumer --bootstrap-server localhost:9092 --topic my-topic --from-beginning
 
 # ========== debug ==========
+
+docker-compose logs kafka
+
 
 # Ejecuta el siguiente comando en PowerShell para crear un contenedor temporal con kafkacat y verificar la conexión:
 docker run --rm --network="host" edenhill/kafkacat:1.6.0 -b localhost:9092 -L
